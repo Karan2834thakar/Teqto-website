@@ -34,11 +34,11 @@ export default function Services() {
       <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SplitReveal
           as="h2"
-          className="font-display text-[clamp(2.4rem,7vw,6rem)] font-bold leading-none tracking-tight text-white"
+          className="font-display block w-full max-w-none text-[clamp(1.8rem,4.8vw,4.5rem)] font-bold leading-none tracking-tight text-white md:text-[clamp(2rem,4vw,5rem)]"
         >
           What we do
         </SplitReveal>
-        <p className="max-w-sm text-sm font-light leading-relaxed text-white/50">
+        <p className="max-w-md text-sm font-light leading-relaxed text-white/50">
           Five disciplines, one team. From first line of code to enterprise-scale
           rollout, we engineer the full journey.
         </p>
@@ -49,18 +49,18 @@ export default function Services() {
           <div
             key={service.number}
             data-cursor="hover"
-            className="service-row group relative grid cursor-pointer grid-cols-1 items-start gap-4 border-b border-white/10 py-8 transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_1fr_auto] md:items-center md:gap-10 md:py-10"
+            className="service-row group relative grid cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
             style={{ visibility: "hidden" }}
           >
             <span className="font-display text-sm text-brand-fuchsia/70">
               {service.number}
             </span>
 
-            <div className="md:flex md:items-center md:gap-8 md:transition-transform md:duration-500 md:group-hover:translate-x-4">
-              <h3 className="font-display text-3xl font-medium text-white md:text-5xl">
+            <div className="min-w-0 md:transition-transform md:duration-500 md:group-hover:translate-x-3">
+              <h3 className="font-display text-2xl font-medium text-white md:text-4xl">
                 {service.title}
               </h3>
-              <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-white/50 md:mt-0">
+              <p className="mt-3 max-w-none text-sm font-light leading-relaxed text-white/50 md:text-base">
                 {service.description}
               </p>
             </div>

@@ -9,6 +9,7 @@ export default function Logo({
   showWord = true,
   glow = false,
   imgClassName = "w-9",
+  wordClassName = "text-lg",
   className = "",
 }) {
   return (
@@ -20,7 +21,7 @@ export default function Logo({
         <img src={logo} alt={`${brand.name} ${brand.suffix} logo`} className={imgClassName} />
       </span>
       {showWord && (
-        <span className="font-display text-lg font-semibold leading-none tracking-tight text-white">
+        <span className={`font-display font-semibold leading-none tracking-tight text-white ${wordClassName}`}>
           {brand.name}
           <span className="text-brand-fuchsia">.</span>
         </span>

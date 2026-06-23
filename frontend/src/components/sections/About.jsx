@@ -7,7 +7,7 @@ import Reveal from "../ui/Reveal";
  */
 export default function About() {
   return (
-    <section id="about" className="relative mx-auto max-w-6xl px-4 py-32 md:py-48">
+    <section id="about" className="relative mx-auto max-w-7xl px-4 py-32 md:py-48">
       <Reveal className="mb-10">
         <span className="inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-brand-fuchsia/80">
           <span className="h-px w-8 bg-brand-fuchsia/60" />
@@ -17,9 +17,9 @@ export default function About() {
 
       <SplitReveal
         as="h2"
-        className="font-display text-[clamp(1.9rem,4.6vw,4rem)] font-light leading-[1.15] tracking-tight text-white"
+        className="font-display block w-full max-w-none text-balance text-[clamp(1.5rem,3.2vw,3rem)] font-light leading-[1.08] tracking-tight text-white md:text-[clamp(1.75rem,2.7vw,3.5rem)]"
       >
-        Teqto Infotech is Web and App Solution Provider and also Providing Customized ERP-CRM Software and also Providing E-Commerce Solutions, and Social Media Platform Development – to small & mid-sized practices. Our goal is to be apprehended as the most reliable company of integrated process management solutions.
+        Teqto Infotech delivers web and app solutions, customized ERP and CRM software, e-commerce systems, and social media platform development for small and mid-sized businesses. Our goal is to be recognized as a reliable company for integrated process management solutions.
       </SplitReveal>
 
       <Reveal

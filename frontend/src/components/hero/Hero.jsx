@@ -50,63 +50,67 @@ export default function Hero({ ready }) {
     <section
       id="top"
       ref={scope}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-24 pt-40 text-center md:pt-44"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden px-6 pt-40 text-center md:pt-44"
     >
-      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center">
-        {/* Eyebrow */}
-        <div
-          ref={metaRef}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-md"
-          style={{ visibility: "hidden" }}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-fuchsia" />
-          Teqto Infotech
-        </div>
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center">
+        <div className="flex flex-col items-center">
+          {/* Eyebrow */}
+          <div
+            ref={metaRef}
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-md"
+            style={{ visibility: "hidden" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-fuchsia" />
+            Teqto Infotech
+          </div>
 
-        {/* Massive heading */}
-        <h1 className="font-display font-bold uppercase leading-[0.95] tracking-tight text-[clamp(2.4rem,7.5vw,7.5rem)]">
-          {headingLines.map((line, i) => (
-            <span key={line} className="reveal-line">
-              <span
-                ref={addLine}
-                className={`inline-block ${i === 1 ? "text-gradient" : "text-white"}`}
-                style={{ visibility: "hidden" }}
-              >
-                {line}
+          {/* Massive heading */}
+          <h1 className="font-display font-bold uppercase leading-[0.95] tracking-tight text-[clamp(2.4rem,7.5vw,7.5rem)]">
+            {headingLines.map((line, i) => (
+              <span key={line} className="reveal-line">
+                <span
+                  ref={addLine}
+                  className={`inline-block ${i === 1 ? "text-gradient" : "text-white"}`}
+                  style={{ visibility: "hidden" }}
+                >
+                  {line}
+                </span>
               </span>
+            ))}
+          </h1>
+
+          {/* Supporting copy */}
+          <p
+            ref={copyRef}
+            className="mt-8 max-w-xl text-base font-light leading-relaxed text-white/55 md:text-lg"
+            style={{ visibility: "hidden" }}
+          >
+            Teqto Infotech engineers software, AI solutions, enterprise platforms and
+            cloud systems — turning ambitious ideas into future-ready digital products.
+          </p>
+
+          {/* CTAs */}
+          <div
+            ref={ctaRef}
+            className="mt-10 flex flex-wrap items-center justify-center gap-4"
+            style={{ visibility: "hidden" }}
+          >
+            <MagneticButton variant="primary" href="#footer">
+              Start a project
+            </MagneticButton>
+            <MagneticButton variant="ghost" href="#services">
+              Explore services
+            </MagneticButton>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="pointer-events-none mt-14 flex flex-col items-center gap-3">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+              Scroll
             </span>
-          ))}
-        </h1>
-
-        {/* Supporting copy */}
-        <p
-          ref={copyRef}
-          className="mt-8 max-w-xl text-base font-light leading-relaxed text-white/55 md:text-lg"
-          style={{ visibility: "hidden" }}
-        >
-          Teqto Infotech engineers software, AI solutions, enterprise platforms and
-          cloud systems — turning ambitious ideas into future-ready digital products.
-        </p>
-
-        {/* CTAs */}
-        <div
-          ref={ctaRef}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
-          style={{ visibility: "hidden" }}
-        >
-          <MagneticButton variant="primary" href="#footer">
-            Start a project
-          </MagneticButton>
-          <MagneticButton variant="ghost" href="#services">
-            Explore services
-          </MagneticButton>
+            <span className="block h-14 w-px bg-gradient-to-b from-brand-fuchsia to-transparent" />
+          </div>
         </div>
-      </div>
-
-      {/* Scroll indicator (absolute — does not affect centring) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <span className="text-[10px] uppercase tracking-[0.35em] text-white/40">Scroll</span>
-        <span className="block h-14 w-px bg-gradient-to-b from-brand-fuchsia to-transparent" />
       </div>
     </section>
   );

@@ -30,34 +30,56 @@ export default function SplitReveal({
         return;
       }
 
-      const split = new SplitType(el, {
-        types: "lines,words",
-        lineClass: "reveal-line",
-      });
+      let split;
+      let animation;
+      let cancelled = false;
 
-      gsap.set(el, { autoAlpha: 1 });
-      gsap.from(split.words, {
-        yPercent: 115,
-        duration,
-        delay,
-        ease: "power4.out",
-        stagger,
-        scrollTrigger: {
-          trigger: el,
-          start,
-          toggleActions: "play none none reverse",
-        },
-      });
+      const build = () => {
+        if (cancelled) return;
+
+        split?.revert();
+        animation?.scrollTrigger?.kill();
+        animation?.kill();
+
+        split = new SplitType(el, {
+          types: "lines,words",
+          lineClass: "reveal-line",
+        });
+
+        gsap.set(el, { autoAlpha: 1 });
+        animation = gsap.fromTo(
+          split.words,
+          { yPercent: 115 },
+          {
+            yPercent: 0,
+            duration,
+            delay,
+            ease: "power4.out",
+            stagger,
+            scrollTrigger: {
+              trigger: el,
+              start,
+              toggleActions: "play reverse play reverse",
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      };
+
+      Promise.resolve(document.fonts?.ready).then(build);
 
       // Re-split on resize so line breaks stay correct.
       const onResize = () => {
-        split.split();
+        split?.split();
         ScrollTrigger.refresh();
       };
       window.addEventListener("resize", onResize);
       return () => {
+        cancelled = true;
         window.removeEventListener("resize", onResize);
-        split.revert();
+        animation?.scrollTrigger?.kill();
+        animation?.kill();
+        split?.revert();
       };
     },
     { scope: ref }

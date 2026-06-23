@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { gsap } from "../../animations/gsap";
-import { navLinks } from "../../data/siteData";
 import Logo from "../ui/Logo";
 import MegaMenu from "./MegaMenu";
 
@@ -50,8 +49,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed left-1/2 top-4 z-50 w-[min(94vw,1200px)] -translate-x-1/2"
-      onMouseLeave={() => setMegaOpen(false)}
+      className="fixed left-1/2 top-4 z-50 w-[min(94vw,1200px)] -translate-x-1/2 overflow-visible"
     >
       <nav
         ref={barRef}
@@ -59,25 +57,8 @@ export default function Navbar() {
         style={{ borderColor: "rgba(255,255,255,0)", backgroundColor: "rgba(10,6,16,0)" }}
       >
         <a href="#top" onClick={(e) => handleNav(e, "#top")} data-cursor="hover">
-          <Logo />
+          <Logo imgClassName="w-12 md:w-14" wordClassName="text-xl md:text-2xl" />
         </a>
-
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.label} onMouseEnter={() => setMegaOpen(!!link.hasMega)}>
-              <a
-                href={link.href}
-                onClick={(e) => handleNav(e, link.href)}
-                data-cursor="hover"
-                className="group relative text-sm font-medium text-white/75 transition-colors hover:text-white"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand-fuchsia transition-all duration-300 group-hover:w-full" />
-              </a>
-            </li>
-          ))}
-        </ul>
 
         <div className="flex items-center gap-3">
           <a
@@ -88,6 +69,16 @@ export default function Navbar() {
           >
             Let's talk
           </a>
+
+          <button
+            onClick={() => setMegaOpen((open) => !open)}
+            data-cursor="hover"
+            aria-label="Open mega menu"
+            aria-expanded={megaOpen}
+            className="hidden rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:inline-flex"
+          >
+            Menu
+          </button>
 
           {/* Mobile toggle */}
           <button
@@ -112,7 +103,7 @@ export default function Navbar() {
 
       {/* Desktop mega menu */}
       <AnimatePresence>
-        {megaOpen && <MegaMenu onNavigate={(e) => handleNav(e, "#services")} />}
+        {megaOpen && <MegaMenu onNavigate={(e, href) => handleNav(e, href)} />}
       </AnimatePresence>
 
       {/* Mobile drawer */}

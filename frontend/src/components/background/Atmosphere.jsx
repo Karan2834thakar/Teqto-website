@@ -14,7 +14,7 @@ import { gsap, prefersReducedMotion } from "../../animations/gsap";
 export default function Atmosphere() {
   const glowRef = useRef(null);
 
-  // Cursor-reactive glow.
+  // Cursor-reactive glow w.
   useEffect(() => {
     if (prefersReducedMotion) return;
     const el = glowRef.current;

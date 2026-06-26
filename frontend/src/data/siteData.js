@@ -6,30 +6,35 @@ export const navLinks = [
   { label: "Company", href: "#footer" },
 ];
 
-/** Mega-menu columns surfaced under "Services". */
+/** Mega-menu columns surfaced under "Services". Mirrors the Services page —
+ *  the first column holds our two flagship services and is highlighted. */
 export const megaMenu = [
   {
-    heading: "Engineering",
+    heading: "Core Services",
+    highlight: true,
     items: [
-      { title: "Custom Software", desc: "Bespoke platforms & products" },
-      { title: "Web Applications", desc: "Scalable, modern front-ends" },
-      { title: "Mobile Apps", desc: "iOS, Android & cross-platform" },
+      { title: "AI, ML & Automation", desc: "Chatbots, ML & n8n / GHL automation" },
+      { title: "Full Stack Development", desc: "Front-end to back-end, end to end" },
     ],
   },
   {
-    heading: "Intelligence",
+    heading: "Engineering & Apps",
     items: [
-      { title: "AI Solutions", desc: "LLMs, agents & automation" },
-      { title: "Data & ML", desc: "Pipelines, models & insight" },
-      { title: "Computer Vision", desc: "Detection & recognition" },
+      { title: "Frontend Development", desc: "React, Vue & modern UIs" },
+      { title: "Backend Development", desc: "APIs, servers & databases" },
+      { title: "Mobile App Development", desc: "iOS, Android & cross-platform" },
+      { title: "Custom Software", desc: "ERP, CRM & SaaS platforms" },
     ],
   },
   {
-    heading: "Enterprise",
+    heading: "Web, Commerce & Growth",
     items: [
-      { title: "ERP & CRM", desc: "Operations that scale" },
-      { title: "Cloud & DevOps", desc: "AWS · Azure · GCP" },
-      { title: "Integrations", desc: "APIs & legacy systems" },
+      { title: "Web Design & Development", desc: "Sites that convert" },
+      { title: "E-Commerce Solutions", desc: "Stores built to scale" },
+      { title: "Website Performance", desc: "Speed, SEO & uptime" },
+      { title: "Social Media Marketing", desc: "Reach & engagement" },
+      { title: "SEO Optimisation", desc: "Rank higher, win leads" },
+      { title: "Pay Per Click", desc: "Google & Meta ads" },
     ],
   },
 ];
@@ -38,28 +43,30 @@ export const megaMenu = [
 export const services = [
   {
     number: "01",
-    title: "Software Development",
+    title: "AI, ML & Automation",
+    highlight: true,
     description:
-      "End-to-end product engineering — from architecture to deployment — built on modern, maintainable foundations.",
-    tags: ["Web", "Mobile", "APIs", "Platforms"],
+      "Intelligent AI chatbots, machine-learning systems and end-to-end workflow automation that put your operations on autopilot.",
+    tags: ["AI Chatbots", "AI/ML", "n8n", "GoHighLevel", "Automation"],
     points: [
-      "End-to-end product engineering",
-      "Modern, maintainable architecture",
-      "Web, mobile & API platforms",
-      "Quality, security & performance baked in",
+      "Custom AI chatbots & virtual assistants",
+      "Machine learning models & data pipelines",
+      "Workflow automation with n8n & GoHighLevel",
+      "LLM agents & smart integrations",
     ],
   },
   {
     number: "02",
-    title: "AI Solutions",
+    title: "Full Stack Development",
+    highlight: true,
     description:
-      "Intelligent automation, LLM-powered agents and data systems that turn information into competitive advantage.",
-    tags: ["LLMs", "Agents", "ML", "Vision"],
+      "End-to-end product engineering — modern front-ends and robust back-ends — built, shipped and scaled by one senior team.",
+    tags: ["React", "Node.js", "APIs", "Databases", "Cloud"],
     points: [
-      "LLM-powered agents & automation",
-      "Custom ML models & pipelines",
-      "Computer vision & detection",
-      "Data systems that drive decisions",
+      "Modern, responsive front-ends",
+      "Scalable APIs & server architecture",
+      "Database design & integrations",
+      "Deployment, DevOps & scaling",
     ],
   },
   {

@@ -56,7 +56,14 @@ export default function ServiceModal({ active, onClose }) {
             </button>
 
             <div className="relative">
-              <span className="font-display text-sm text-brand-fuchsia/70">{active.number}</span>
+              <div className="flex items-center gap-3">
+                <span className="font-display text-sm text-brand-fuchsia/70">{active.number}</span>
+                {active.highlight && (
+                  <span className="rounded-full border border-brand-fuchsia/40 bg-brand-fuchsia/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-fuchsia">
+                    Core service
+                  </span>
+                )}
+              </div>
               <h3 className="mt-2 max-w-[calc(100%-2.5rem)] font-display text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
                 {active.title}
               </h3>

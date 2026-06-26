@@ -9,6 +9,32 @@ import ServiceModal from "../components/ui/ServiceModal";
 const services = [
   {
     number: "01",
+    title: "AI, ML & Automation",
+    highlight: true,
+    description: "Intelligent AI chatbots, machine-learning systems and end-to-end workflow automation that put your operations on autopilot.",
+    tags: ["AI Chatbots", "AI/ML", "n8n", "GoHighLevel", "Automation"],
+    points: [
+      "Custom AI chatbots & virtual assistants",
+      "Machine learning models & data pipelines",
+      "Workflow automation with n8n & GoHighLevel",
+      "LLM agents & smart integrations",
+    ],
+  },
+  {
+    number: "02",
+    title: "Full Stack Development",
+    highlight: true,
+    description: "End-to-end product engineering — modern front-ends and robust back-ends — built, shipped and scaled by one senior team.",
+    tags: ["React", "Node.js", "APIs", "Databases", "Cloud"],
+    points: [
+      "Modern, responsive front-ends",
+      "Scalable APIs & server architecture",
+      "Database design & integrations",
+      "Deployment, DevOps & scaling",
+    ],
+  },
+  {
+    number: "03",
     title: "Frontend Development",
     description: "Building complex, innovative, responsive, and user-centric solutions with years of expertise in front-end technologies.",
     tags: ["React", "Vue", "Angular", "TypeScript"],
@@ -20,7 +46,7 @@ const services = [
     ],
   },
   {
-    number: "02",
+    number: "04",
     title: "Backend Development",
     description: "Robust backend services that power your website or application — the invisible engine that makes great products possible.",
     tags: ["Node.js", "PHP", "Python", "APIs"],
@@ -32,7 +58,7 @@ const services = [
     ],
   },
   {
-    number: "03",
+    number: "05",
     title: "Web Design & Development",
     description: "Your website's design is the first step in developing a strong online presence. We craft experiences that convert.",
     tags: ["UI/UX", "Figma", "Webflow", "WordPress"],
@@ -44,7 +70,7 @@ const services = [
     ],
   },
   {
-    number: "04",
+    number: "06",
     title: "Mobile App Development",
     description: "Mobile applications of any complexity for B2C and B2B use cases, across many different industries.",
     tags: ["iOS", "Android", "React Native", "Flutter"],
@@ -56,7 +82,7 @@ const services = [
     ],
   },
   {
-    number: "05",
+    number: "07",
     title: "Custom Software Development",
     description: "Enterprise-level solutions tailored for your needs. Our experienced team creates and executes software that reacts to market demands.",
     tags: ["ERP", "CRM", "SaaS", "Enterprise"],
@@ -68,7 +94,7 @@ const services = [
     ],
   },
   {
-    number: "06",
+    number: "08",
     title: "E-Commerce Solutions",
     description: "End-to-end online store development — from design to payment integration — built to sell and scale.",
     tags: ["Shopify", "WooCommerce", "Custom", "Payments"],
@@ -80,7 +106,7 @@ const services = [
     ],
   },
   {
-    number: "07",
+    number: "09",
     title: "Social Media Marketing",
     description: "Build brand awareness across the web and create meaningful connections with your customers through strategic social media marketing.",
     tags: ["Strategy", "Content", "Ads", "Analytics"],
@@ -92,7 +118,7 @@ const services = [
     ],
   },
   {
-    number: "08",
+    number: "10",
     title: "SEO Optimisation",
     description: "Improve your online presence, beat out competitors, and acquire more leads with expert search engine optimisation.",
     tags: ["On-page", "Technical", "Content", "Backlinks"],
@@ -104,7 +130,7 @@ const services = [
     ],
   },
   {
-    number: "09",
+    number: "11",
     title: "Pay Per Click",
     description: "Custom PPC campaigns crafted to fit a variety of budgets, demands and goals — managed by certified professionals.",
     tags: ["Google Ads", "Meta Ads", "ROI", "Campaigns"],
@@ -116,7 +142,7 @@ const services = [
     ],
   },
   {
-    number: "10",
+    number: "12",
     title: "Website Performance",
     description: "A great-performing website means better SEO and users that actually stay. We audit, optimise, and monitor.",
     tags: ["Core Web Vitals", "Speed", "Uptime", "CDN"],
@@ -161,7 +187,7 @@ export default function Services() {
         </SplitReveal>
         <Reveal className="mt-8 max-w-xl">
           <p className="text-lg font-light leading-relaxed text-white/55">
-            Ten disciplines. One team. From the first line of code to enterprise-scale rollout — we engineer the full digital journey.
+            Led by AI, ML &amp; automation and full-stack engineering — and backed by a full digital team. From the first line of code to enterprise-scale rollout, we engineer the entire journey.
           </p>
           <p className="mt-3 text-sm text-white/35">Tap any service to see what's included.</p>
         </Reveal>
@@ -176,12 +202,32 @@ export default function Services() {
               key={svc.number}
               onClick={() => setActive(svc)}
               data-cursor="hover"
-              className="svc-row group relative grid w-full cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 text-left transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
+              className={`svc-row group relative grid w-full cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 text-left transition-colors duration-500 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10 ${
+                svc.highlight
+                  ? "bg-gradient-to-r from-brand-purple/[0.1] via-brand-fuchsia/[0.05] to-transparent hover:from-brand-purple/[0.16]"
+                  : "hover:bg-white/[0.02]"
+              }`}
               style={{ visibility: "hidden" }}
             >
-              <span className="font-display text-sm text-brand-fuchsia/70">{svc.number}</span>
+              {svc.highlight && (
+                <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-brand-purple via-brand-fuchsia to-brand-pink" />
+              )}
+              <span
+                className={`font-display text-sm ${
+                  svc.highlight ? "text-gradient font-semibold" : "text-brand-fuchsia/70"
+                }`}
+              >
+                {svc.number}
+              </span>
               <div className="min-w-0 md:transition-transform md:duration-500 md:group-hover:translate-x-3">
-                <h3 className="font-display text-2xl font-medium text-white md:text-4xl">{svc.title}</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="font-display text-2xl font-medium text-white md:text-4xl">{svc.title}</h3>
+                  {svc.highlight && (
+                    <span className="rounded-full border border-brand-fuchsia/40 bg-brand-fuchsia/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-fuchsia">
+                      Core service
+                    </span>
+                  )}
+                </div>
                 <p className="mt-3 text-sm font-light leading-relaxed text-white/50 md:text-base">{svc.description}</p>
                 <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand-fuchsia/80 transition-colors group-hover:text-brand-fuchsia">
                   View details

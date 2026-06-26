@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "../../animations/gsap";
 import { services } from "../../data/siteData";
 import SplitReveal from "../ui/SplitReveal";
+import PageCTA from "../ui/PageCTA";
+import ServiceModal from "../ui/ServiceModal";
 
 /**
  * Capability list with a per-row reveal and a sliding hover treatment. Each row
@@ -10,6 +12,7 @@ import SplitReveal from "../ui/SplitReveal";
  */
 export default function Services() {
   const listRef = useRef(null);
+  const [active, setActive] = useState(null);
 
   useGSAP(
     () => {
@@ -30,7 +33,7 @@ export default function Services() {
   );
 
   return (
-    <section id="services" className="relative mx-auto max-w-7xl px-6 py-28 md:py-40">
+    <section id="services" className="shell relative py-20 md:py-28">
       <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SplitReveal
           as="h2"
@@ -46,10 +49,12 @@ export default function Services() {
 
       <div ref={listRef} className="border-t border-white/10">
         {services.map((service) => (
-          <div
+          <button
+            type="button"
             key={service.number}
+            onClick={() => setActive(service)}
             data-cursor="hover"
-            className="service-row group relative grid cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
+            className="service-row group relative grid w-full cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 text-left transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
             style={{ visibility: "hidden" }}
           >
             <span className="font-display text-sm text-brand-fuchsia/70">
@@ -63,6 +68,10 @@ export default function Services() {
               <p className="mt-3 max-w-none text-sm font-light leading-relaxed text-white/50 md:text-base">
                 {service.description}
               </p>
+              <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-brand-fuchsia/80 transition-colors group-hover:text-brand-fuchsia">
+                View details
+                <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              </span>
             </div>
 
             <div className="flex flex-wrap gap-2 md:justify-end">
@@ -75,9 +84,15 @@ export default function Services() {
                 </span>
               ))}
             </div>
-          </div>
+          </button>
         ))}
       </div>
+
+      <div className="mt-12">
+        <PageCTA to="/services">View all services</PageCTA>
+      </div>
+
+      <ServiceModal active={active} onClose={() => setActive(null)} />
     </section>
   );
 }

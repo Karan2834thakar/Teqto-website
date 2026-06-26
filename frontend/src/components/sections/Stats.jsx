@@ -24,7 +24,7 @@ export default function Stats() {
   );
 
   return (
-    <section ref={scope} className="relative mx-auto max-w-7xl px-6 py-20">
+    <section ref={scope} className="shell relative py-20 md:py-28">
       <div className="grid grid-cols-2 gap-y-12 rounded-3xl border border-white/10 bg-white/[0.02] px-6 py-14 backdrop-blur-sm md:grid-cols-4 md:px-12">
         {stats.map((stat) => (
           <div key={stat.title} className="text-center">

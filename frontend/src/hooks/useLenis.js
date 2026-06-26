@@ -23,7 +23,16 @@ export default function useLenis() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
+    // Recompute trigger positions once fonts + lazy canvas have settled, so
+    // scroll-reveal sections never get stuck hidden (wrong start positions).
+    const refresh = () => ScrollTrigger.refresh();
+    const raf = requestAnimationFrame(refresh);
+    const timer = setTimeout(refresh, 600);
+    document.fonts?.ready.then(refresh).catch(() => {});
+
     return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
       gsap.ticker.remove(tick);
       lenis.destroy();
       delete window.__lenis;

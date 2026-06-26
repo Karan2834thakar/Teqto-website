@@ -1,5 +1,15 @@
 import { motion } from "framer-motion";
-import { megaMenu, navLinks } from "../../data/siteData";
+import { Link } from "react-router-dom";
+import { megaMenu } from "../../data/siteData";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
 
 const container = {
   hidden: { opacity: 0, y: -12 },
@@ -16,8 +26,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-/** Premium mega menu surfaced from the navbar. */
-export default function MegaMenu({ onNavigate }) {
+export default function MegaMenu({ onClose }) {
   return (
     <motion.div
       variants={container}
@@ -30,6 +39,7 @@ export default function MegaMenu({ onNavigate }) {
       <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-brand-fuchsia/20 blur-[90px]" />
 
       <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[0.85fr_1fr_1fr_1fr]">
+        {/* Nav links column */}
         <div>
           <motion.h4
             variants={item}
@@ -40,9 +50,9 @@ export default function MegaMenu({ onNavigate }) {
           <ul className="space-y-1">
             {navLinks.map((link, index) => (
               <motion.li key={link.label} variants={item}>
-                <a
-                  href={link.href}
-                  onClick={(e) => onNavigate(e, link.href)}
+                <Link
+                  to={link.href}
+                  onClick={onClose}
                   data-cursor="hover"
                   className="group flex items-center justify-between rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
                 >
@@ -50,7 +60,7 @@ export default function MegaMenu({ onNavigate }) {
                     {link.label}
                   </span>
                   <span className="text-xs text-white/35">0{index + 1}</span>
-                </a>
+                </Link>
               </motion.li>
             ))}
           </ul>
@@ -61,18 +71,19 @@ export default function MegaMenu({ onNavigate }) {
           >
             <p className="text-sm font-medium text-white">Need a tailored build?</p>
             <p className="mt-1 text-xs leading-relaxed text-white/45">
-              Let’s map the right product, automation, or platform for your team.
+              Let us map the right product, automation, or platform for your team.
             </p>
-            <a
-              href="#footer"
-              onClick={(e) => onNavigate(e, "#footer")}
+            <Link
+              to="/contact"
+              onClick={onClose}
               className="mt-4 inline-flex rounded-full bg-white/10 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-white/20"
             >
               Start a project
-            </a>
+            </Link>
           </motion.div>
         </div>
 
+        {/* Service columns */}
         {megaMenu.map((col) => (
           <div key={col.heading}>
             <motion.h4
@@ -84,9 +95,9 @@ export default function MegaMenu({ onNavigate }) {
             <ul className="space-y-1">
               {col.items.map((entry) => (
                 <motion.li key={entry.title} variants={item}>
-                  <a
-                    href="#services"
-                    onClick={(e) => onNavigate(e, "#services")}
+                  <Link
+                    to="/services"
+                    onClick={onClose}
                     data-cursor="hover"
                     className="group block rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
                   >
@@ -94,7 +105,7 @@ export default function MegaMenu({ onNavigate }) {
                       {entry.title}
                     </span>
                     <span className="block text-xs text-white/45">{entry.desc}</span>
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>

@@ -42,6 +42,12 @@ export const services = [
     description:
       "End-to-end product engineering — from architecture to deployment — built on modern, maintainable foundations.",
     tags: ["Web", "Mobile", "APIs", "Platforms"],
+    points: [
+      "End-to-end product engineering",
+      "Modern, maintainable architecture",
+      "Web, mobile & API platforms",
+      "Quality, security & performance baked in",
+    ],
   },
   {
     number: "02",
@@ -49,6 +55,12 @@ export const services = [
     description:
       "Intelligent automation, LLM-powered agents and data systems that turn information into competitive advantage.",
     tags: ["LLMs", "Agents", "ML", "Vision"],
+    points: [
+      "LLM-powered agents & automation",
+      "Custom ML models & pipelines",
+      "Computer vision & detection",
+      "Data systems that drive decisions",
+    ],
   },
   {
     number: "03",
@@ -56,6 +68,12 @@ export const services = [
     description:
       "ERP, CRM and internal tools engineered for reliability, security and scale across your entire organisation.",
     tags: ["ERP", "CRM", "Internal Tools"],
+    points: [
+      "Tailored ERP & CRM systems",
+      "Internal tools & dashboards",
+      "Reliable, secure & scalable",
+      "Org-wide process automation",
+    ],
   },
   {
     number: "04",
@@ -63,6 +81,12 @@ export const services = [
     description:
       "Resilient cloud-native infrastructure and DevOps pipelines that ship faster and stay up.",
     tags: ["AWS", "Azure", "DevOps", "K8s"],
+    points: [
+      "Cloud-native infrastructure",
+      "CI/CD & DevOps pipelines",
+      "AWS · Azure · GCP",
+      "High availability & monitoring",
+    ],
   },
   {
     number: "05",
@@ -70,6 +94,12 @@ export const services = [
     description:
       "Strategy, design and modernisation that move legacy operations into a future-ready digital core.",
     tags: ["Strategy", "UX", "Modernisation"],
+    points: [
+      "Legacy system modernisation",
+      "Product & UX strategy",
+      "Process digitisation",
+      "A future-ready digital core",
+    ],
   },
 ];
 

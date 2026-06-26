@@ -17,6 +17,8 @@ export default function SplitReveal({
   duration = 1,
   start = "top 85%",
   delay = 0,
+  by = "words",
+  once = false,
 }) {
   const ref = useRef(null);
 
@@ -41,29 +43,37 @@ export default function SplitReveal({
         animation?.scrollTrigger?.kill();
         animation?.kill();
 
-        split = new SplitType(el, {
-          types: "lines,words",
-          lineClass: "reveal-line",
-        });
+        const byLines = by === "lines";
+
+        split = new SplitType(
+          el,
+          byLines
+            ? { types: "lines" }
+            : { types: "lines,words", lineClass: "reveal-line" }
+        );
 
         gsap.set(el, { autoAlpha: 1 });
-        animation = gsap.fromTo(
-          split.words,
-          { yPercent: 115 },
-          {
-            yPercent: 0,
-            duration,
-            delay,
-            ease: "power4.out",
-            stagger,
-            scrollTrigger: {
-              trigger: el,
-              start,
-              toggleActions: "play reverse play reverse",
-              invalidateOnRefresh: true,
-            },
-          }
-        );
+
+        // Lines mode: a soft, smooth fade-and-rise per line (fewer moving
+        // elements). Words mode: the masked, rising word stagger.
+        const targets = byLines ? split.lines : split.words;
+        const fromVars = byLines ? { y: 26, opacity: 0 } : { yPercent: 115 };
+        const toVars = byLines ? { y: 0, opacity: 1 } : { yPercent: 0 };
+
+        animation = gsap.fromTo(targets, fromVars, {
+          ...toVars,
+          duration,
+          delay,
+          ease: byLines ? "power3.out" : "power4.out",
+          stagger,
+          scrollTrigger: {
+            trigger: el,
+            start,
+            toggleActions: once ? "play none none none" : "play reverse play reverse",
+            once,
+            invalidateOnRefresh: true,
+          },
+        });
       };
 
       Promise.resolve(document.fonts?.ready).then(build);

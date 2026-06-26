@@ -1,64 +1,71 @@
 import { useRef } from "react";
-import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { gsap, prefersReducedMotion } from "../../animations/gsap";
 import logo from "../../assets/favicon.png";
 
 export default function IntroOverlay({ onComplete }) {
   const overlayRef = useRef();
   const titleRef = useRef();
   const logoRef = useRef();
+  const subRef = useRef();
 
   useGSAP(() => {
+    if (prefersReducedMotion) {
+      onComplete();
+      return;
+    }
+
+    const letters = titleRef.current.querySelectorAll(".intro-letter");
+
     const tl = gsap.timeline({
-      onComplete: () => {
-        onComplete();
-      },
+      defaults: { ease: "power3.out" },
+      onComplete,
     });
 
-    tl.from(titleRef.current.children, {
-      y: 200,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.08,
-      ease: "power4.out",
-    })
-
+    tl
+      // Logo gently scales + fades in (no harsh spin / overshoot)
+      .from(logoRef.current, {
+        scale: 0.6,
+        opacity: 0,
+        duration: 1,
+      })
+      // Letters rise smoothly out of their masks
       .from(
-        logoRef.current,
+        letters,
         {
-          scale: 0,
-          rotation: 180,
+          yPercent: 120,
           opacity: 0,
-          duration: 1,
-          ease: "back.out(2)",
+          duration: 0.9,
+          stagger: 0.07,
+        },
+        "-=0.55"
+      )
+      .from(
+        subRef.current,
+        {
+          opacity: 0,
+          y: 14,
+          duration: 0.6,
         },
         "-=0.4"
       )
-
-      .to(logoRef.current, {
-        scale: 1.2,
-        duration: 0.4,
-      })
-
-      .to(logoRef.current, {
-        scale: 1,
-        duration: 0.4,
-      })
-
-      .to(titleRef.current, {
-        scale: 15,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.inOut",
-      })
-
+      // Soft breathing pulse on the logo
+      .to(logoRef.current, { scale: 1.06, duration: 0.5, ease: "sine.inOut" }, "+=0.1")
+      .to(logoRef.current, { scale: 1, duration: 0.5, ease: "sine.inOut" })
+      // Cinematic zoom-out, then slide the overlay away
+      .to(
+        titleRef.current,
+        { scale: 11, opacity: 0, duration: 1.3, ease: "power3.inOut" },
+        "+=0.25"
+      )
+      .to(
+        [logoRef.current, subRef.current],
+        { opacity: 0, duration: 0.6, ease: "power2.in" },
+        "<"
+      )
       .to(
         overlayRef.current,
-        {
-          yPercent: -100,
-          duration: 1.2,
-          ease: "power4.inOut",
-        },
+        { yPercent: -100, duration: 1.1, ease: "power4.inOut" },
         "-=0.7"
       );
   });
@@ -79,17 +86,22 @@ export default function IntroOverlay({ onComplete }) {
         className="w-28 md:w-40 z-10 mb-10"
       />
 
-      {/* Title */}
+      {/* Title — each letter rises out of its own mask */}
       <div
         ref={titleRef}
-        className="flex text-white font-mono font-black text-[80px] md:text-[180px] leading-none tracking-tight z-10"
+        className="flex text-white font-display font-extrabold text-[80px] md:text-[180px] leading-none tracking-tight z-10"
       >
         {"TEQTO".split("").map((letter, index) => (
-          <span key={index}>{letter}</span>
+          <span key={index} className="inline-block overflow-hidden pb-[0.12em]">
+            <span className="intro-letter inline-block">{letter}</span>
+          </span>
         ))}
       </div>
 
-      <div className="text-fuchsia-400 tracking-[10px] mt-4 text-sm md:text-lg">
+      <div
+        ref={subRef}
+        className="text-fuchsia-400 tracking-[10px] mt-4 text-sm md:text-lg"
+      >
         INFOTECH
       </div>
     </div>

@@ -1,13 +1,18 @@
+import { Link } from "react-router-dom";
 import useMagnetic from "../../hooks/useMagnetic";
 
 /**
  * Magnetic CTA. `variant` controls the look:
  *  - "primary"  filled gradient
  *  - "ghost"    glass outline
+ *
+ * Routing: pass `to` for an internal react-router link (keeps the URL clean,
+ * no `#` anchors) or `href` for an external/mail link.
  */
 export default function MagneticButton({
   children,
   variant = "primary",
+  to,
   href,
   onClick,
   className = "",
@@ -31,6 +36,14 @@ export default function MagneticButton({
   );
 
   const cls = `${base} ${variants[variant]} ${className}`;
+
+  if (to) {
+    return (
+      <Link ref={ref} to={to} onClick={onClick} className={cls} data-cursor="hover">
+        {inner}
+      </Link>
+    );
+  }
 
   if (href) {
     return (

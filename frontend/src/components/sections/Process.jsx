@@ -5,7 +5,7 @@ import Reveal from "../ui/Reveal";
 /** How-we-work timeline with staggered, scroll-revealed steps. */
 export default function Process() {
   return (
-    <section id="process" className="relative mx-auto max-w-7xl px-6 py-28 md:py-40">
+    <section id="process" className="shell relative py-20 md:py-28">
       <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SplitReveal
           as="h2"

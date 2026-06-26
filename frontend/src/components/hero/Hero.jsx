@@ -1,45 +1,62 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, prefersReducedMotion } from "../../animations/gsap";
-import { heroIntro } from "../../animations/timelines";
 import MagneticButton from "../ui/MagneticButton";
 
 /**
- * Fullscreen, centred hero. The animated "spear" (wireframe crystal) and
- * particle field live in the shared background canvas; here we focus on the
- * headline + CTAs. Generous top padding keeps the content clear of the navbar.
- * Text/CTAs animate once `ready` (handed off from the intro overlay).
+ * Fullscreen, centred hero. The animated background lives in the shared canvas;
+ * here we focus on the headline + CTAs.
+ *
+ * The entrance runs on EVERY mount (so returning to the home page always
+ * re-reveals + animates the text). On the very first load `ready` stays false
+ * until the intro overlay lifts, so we don't animate behind the overlay.
  */
 export default function Hero({ ready }) {
   const scope = useRef(null);
-  const lineRefs = useRef([]);
   const copyRef = useRef(null);
   const ctaRef = useRef(null);
   const metaRef = useRef(null);
 
-  lineRefs.current = [];
-  const addLine = (el) => el && lineRefs.current.push(el);
-
   useGSAP(
     () => {
-      if (!ready) return;
+      const meta = metaRef.current;
+      const lines = gsap.utils.toArray(scope.current.querySelectorAll(".hero-line"));
+      const copy = copyRef.current;
+      const cta = ctaRef.current;
+      const all = [meta, ...lines, copy, cta].filter(Boolean);
 
-      const targets = [...lineRefs.current, copyRef.current, ctaRef.current, metaRef.current];
-
+      // Reduced motion → just show everything, no animation.
       if (prefersReducedMotion) {
-        gsap.set(targets, { autoAlpha: 1, y: 0 });
+        gsap.set(all, { clearProps: "all", autoAlpha: 1, yPercent: 0, y: 0 });
         return;
       }
 
-      // Reveal the (FOUC-guarded) targets, then animate them in.
-      gsap.set(targets, { autoAlpha: 1 });
-      heroIntro({
-        logo: null,
-        lines: lineRefs.current,
-        copy: copyRef.current,
-        cta: ctaRef.current,
-        meta: metaRef.current,
-      });
+      // Keep everything hidden until we're allowed to play (avoids a flash
+      // behind the intro overlay on first load).
+      gsap.set(all, { autoAlpha: 0 });
+      gsap.set(lines, { yPercent: 120 });
+      gsap.set(meta, { y: 20 });
+      gsap.set(copy, { y: 30 });
+      gsap.set(cta, { y: 24 });
+
+      if (!ready) return;
+
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      tl.to(meta, { autoAlpha: 1, y: 0, duration: 0.8 }, 0.1)
+        .to(
+          lines,
+          {
+            autoAlpha: 1,
+            yPercent: 0,
+            duration: 1.2,
+            stagger: 0.12,
+            clearProps: "transform",
+          },
+          0.2
+        )
+        .to(copy, { autoAlpha: 1, y: 0, duration: 1 }, "-=0.7")
+        .to(cta, { autoAlpha: 1, y: 0, duration: 0.8 }, "-=0.6");
     },
     { scope, dependencies: [ready] }
   );
@@ -58,7 +75,6 @@ export default function Hero({ ready }) {
           <div
             ref={metaRef}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-white/60 backdrop-blur-md"
-            style={{ visibility: "hidden" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand-fuchsia" />
             Teqto Infotech
@@ -69,9 +85,7 @@ export default function Hero({ ready }) {
             {headingLines.map((line, i) => (
               <span key={line} className="reveal-line">
                 <span
-                  ref={addLine}
-                  className={`inline-block ${i === 1 ? "text-gradient" : "text-white"}`}
-                  style={{ visibility: "hidden" }}
+                  className={`hero-line inline-block ${i === 1 ? "text-gradient" : "text-white"}`}
                 >
                   {line}
                 </span>
@@ -83,22 +97,20 @@ export default function Hero({ ready }) {
           <p
             ref={copyRef}
             className="mt-8 max-w-xl text-base font-light leading-relaxed text-white/55 md:text-lg"
-            style={{ visibility: "hidden" }}
           >
             Teqto Infotech engineers software, AI solutions, enterprise platforms and
             cloud systems — turning ambitious ideas into future-ready digital products.
           </p>
 
-          {/* CTAs */}
+          {/* CTAs — internal routes (no # anchors) */}
           <div
             ref={ctaRef}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
-            style={{ visibility: "hidden" }}
           >
-            <MagneticButton variant="primary" href="#footer">
+            <MagneticButton variant="primary" to="/contact">
               Start a project
             </MagneticButton>
-            <MagneticButton variant="ghost" href="#services">
+            <MagneticButton variant="ghost" to="/services">
               Explore services
             </MagneticButton>
           </div>

@@ -5,7 +5,7 @@ import MagneticButton from "../ui/MagneticButton";
 /** Closing call-to-action with a strong gradient statement. */
 export default function CTA() {
   return (
-    <section className="relative mx-auto max-w-6xl px-6 py-32 md:py-48 text-center">
+    <section className="shell relative py-20 md:py-28 text-center">
       <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.02] px-6 py-24 backdrop-blur-sm md:px-16">
         {/* Internal glow */}
         <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-fuchsia/20 blur-[120px]" />
@@ -24,10 +24,10 @@ export default function CTA() {
         </SplitReveal>
 
         <Reveal className="relative mt-10 flex flex-wrap items-center justify-center gap-4">
-          <MagneticButton variant="primary" href="#footer">
+          <MagneticButton variant="primary" to="/contact">
             Start a project
           </MagneticButton>
-          <MagneticButton variant="ghost" href="#services">
+          <MagneticButton variant="ghost" to="/services">
             See our services
           </MagneticButton>
         </Reveal>

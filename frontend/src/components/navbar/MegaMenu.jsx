@@ -88,16 +88,9 @@ export default function MegaMenu({ onClose }) {
           <div key={col.heading}>
             <motion.h4
               variants={item}
-              className={`mb-4 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] ${
-                col.highlight ? "text-gradient" : "text-brand-fuchsia/80"
-              }`}
+              className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-brand-fuchsia/80"
             >
               {col.heading}
-              {col.highlight && (
-                <span className="rounded-full border border-brand-fuchsia/40 bg-brand-fuchsia/10 px-1.5 py-0.5 text-[9px] font-semibold tracking-normal text-brand-fuchsia">
-                  Flagship
-                </span>
-              )}
             </motion.h4>
             <ul className="space-y-1">
               {col.items.map((entry) => (
@@ -106,9 +99,7 @@ export default function MegaMenu({ onClose }) {
                     to="/services"
                     onClick={onClose}
                     data-cursor="hover"
-                    className={`group block rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5 ${
-                      col.highlight ? "border border-brand-fuchsia/20 bg-brand-fuchsia/[0.04]" : ""
-                    }`}
+                    className="group block rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
                   >
                     <span className="block text-sm font-medium text-white transition-colors group-hover:text-brand-light">
                       {entry.title}

@@ -54,35 +54,17 @@ export default function Services() {
             key={service.number}
             onClick={() => setActive(service)}
             data-cursor="hover"
-            className={`service-row group relative grid w-full cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 text-left transition-colors duration-500 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10 ${
-              service.highlight
-                ? "bg-gradient-to-r from-brand-purple/[0.1] via-brand-fuchsia/[0.05] to-transparent hover:from-brand-purple/[0.16]"
-                : "hover:bg-white/[0.02]"
-            }`}
+            className="service-row group relative grid w-full cursor-pointer grid-cols-1 items-start gap-5 border-b border-white/10 py-8 text-left transition-colors duration-500 hover:bg-white/[0.02] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-8 md:py-10"
             style={{ visibility: "hidden" }}
           >
-            {service.highlight && (
-              <span className="pointer-events-none absolute left-0 top-0 h-full w-[3px] bg-gradient-to-b from-brand-purple via-brand-fuchsia to-brand-pink" />
-            )}
-            <span
-              className={`font-display text-sm ${
-                service.highlight ? "text-gradient font-semibold" : "text-brand-fuchsia/70"
-              }`}
-            >
+            <span className="font-display text-sm text-brand-fuchsia/70">
               {service.number}
             </span>
 
             <div className="min-w-0 md:transition-transform md:duration-500 md:group-hover:translate-x-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="font-display text-2xl font-medium text-white md:text-4xl">
-                  {service.title}
-                </h3>
-                {service.highlight && (
-                  <span className="rounded-full border border-brand-fuchsia/40 bg-brand-fuchsia/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-fuchsia">
-                    Core service
-                  </span>
-                )}
-              </div>
+              <h3 className="font-display text-2xl font-medium text-white md:text-4xl">
+                {service.title}
+              </h3>
               <p className="mt-3 max-w-none text-sm font-light leading-relaxed text-white/50 md:text-base">
                 {service.description}
               </p>

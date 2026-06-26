@@ -27,7 +27,7 @@ export default function IntroOverlay({ onComplete }) {
       .from(logoRef.current, {
         scale: 0.6,
         opacity: 0,
-        duration: 1,
+        duration: 0.65,
       })
       // Letters rise smoothly out of their masks
       .from(
@@ -35,38 +35,38 @@ export default function IntroOverlay({ onComplete }) {
         {
           yPercent: 120,
           opacity: 0,
-          duration: 0.9,
-          stagger: 0.07,
+          duration: 0.6,
+          stagger: 0.05,
         },
-        "-=0.55"
+        "-=0.4"
       )
       .from(
         subRef.current,
         {
           opacity: 0,
           y: 14,
-          duration: 0.6,
+          duration: 0.4,
         },
-        "-=0.4"
+        "-=0.3"
       )
       // Soft breathing pulse on the logo
-      .to(logoRef.current, { scale: 1.06, duration: 0.5, ease: "sine.inOut" }, "+=0.1")
-      .to(logoRef.current, { scale: 1, duration: 0.5, ease: "sine.inOut" })
+      .to(logoRef.current, { scale: 1.05, duration: 0.3, ease: "sine.inOut" }, "+=0.05")
+      .to(logoRef.current, { scale: 1, duration: 0.3, ease: "sine.inOut" })
       // Cinematic zoom-out, then slide the overlay away
       .to(
         titleRef.current,
-        { scale: 11, opacity: 0, duration: 1.3, ease: "power3.inOut" },
-        "+=0.25"
+        { scale: 11, opacity: 0, duration: 0.9, ease: "power3.inOut" },
+        "+=0.1"
       )
       .to(
         [logoRef.current, subRef.current],
-        { opacity: 0, duration: 0.6, ease: "power2.in" },
+        { opacity: 0, duration: 0.45, ease: "power2.in" },
         "<"
       )
       .to(
         overlayRef.current,
-        { yPercent: -100, duration: 1.1, ease: "power4.inOut" },
-        "-=0.7"
+        { yPercent: -100, duration: 0.8, ease: "power4.inOut" },
+        "-=0.55"
       );
   });
 

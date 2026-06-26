@@ -168,7 +168,7 @@ export default function Services() {
       </section>
 
       {/* Services list */}
-      <section className="shell pb-32">
+      <section className="shell pb-24 md:pb-32">
         <div ref={listRef} className="border-t border-white/10">
           {services.map((svc) => (
             <button

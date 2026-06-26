@@ -7,7 +7,7 @@ export default function PageLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="relative z-10 pt-32">
+      <main className="relative z-10 pt-24 md:pt-32">
         {children}
       </main>
       <Footer />

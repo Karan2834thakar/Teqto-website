@@ -46,7 +46,7 @@ export default function Careers() {
       </section>
 
       {/* Perks */}
-      <section ref={cardsRef} className="shell pb-32">
+      <section ref={cardsRef} className="shell pb-24 md:pb-32">
         <div className="perks-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {perks.map(p => (
             <div key={p.title} className="perk-item rounded-2xl border border-white/10 bg-white/[0.02] p-6">

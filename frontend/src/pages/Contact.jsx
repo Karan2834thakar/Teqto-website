@@ -50,7 +50,7 @@ export default function Contact() {
         </Reveal>
       </section>
 
-      <section ref={formRef} className="shell pb-32">
+      <section ref={formRef} className="shell pb-24 md:pb-32">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.5fr]">
           {/* Info */}
           <div className="space-y-10">

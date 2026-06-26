@@ -64,7 +64,7 @@ export default function About() {
             { n: "10+", l: "Services" },
           ].map(s => (
             <div key={s.l}>
-              <div className="font-display text-5xl font-bold text-gradient">{s.n}</div>
+              <div className="font-display text-4xl font-bold text-gradient sm:text-5xl">{s.n}</div>
               <div className="mt-2 text-xs uppercase tracking-[0.2em] text-white/45">{s.l}</div>
             </div>
           ))}
@@ -72,7 +72,7 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="shell py-24">
+      <section className="shell py-16 md:py-24">
         <Reveal className="mb-12">
           <span className="inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-brand-fuchsia/80">
             <span className="h-px w-8 bg-brand-fuchsia/60" />
@@ -95,7 +95,7 @@ export default function About() {
       </section>
 
       {/* Technologies */}
-      <section className="shell py-24 border-t border-white/10">
+      <section className="shell py-16 md:py-24 border-t border-white/10">
         <Reveal className="mb-12 text-center">
           <span className="inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-brand-fuchsia/80">
             <span className="h-px w-8 bg-brand-fuchsia/60" />
@@ -115,7 +115,7 @@ export default function About() {
       </section>
 
       {/* FAQ */}
-      <section className="shell py-24">
+      <section className="shell py-16 md:py-24">
         <Reveal className="mb-12">
           <span className="inline-flex items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-brand-fuchsia/80">
             <span className="h-px w-8 bg-brand-fuchsia/60" />

@@ -39,7 +39,7 @@ export default function ServiceModal({ active, onClose }) {
             exit={{ opacity: 0, y: 24, scale: 0.97 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[88vh] w-full max-w-[640px] overflow-y-auto rounded-3xl border border-white/10 bg-ink-soft/90 p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:p-8 md:p-10"
+            className="relative max-h-[88vh] w-full max-w-[640px] overflow-y-auto overflow-x-hidden rounded-3xl border border-white/10 bg-ink-soft/90 p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:p-8 md:p-10"
           >
             {/* Soft brand glow */}
             <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-brand-fuchsia/20 blur-[90px]" />

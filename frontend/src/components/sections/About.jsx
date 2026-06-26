@@ -22,7 +22,7 @@ export default function About() {
         once
         stagger={0.12}
         duration={0.9}
-        className="font-display block w-full max-w-none text-balance text-[clamp(1.5rem,3.2vw,3rem)] font-light leading-[1.08] tracking-tight text-white md:text-[clamp(1.75rem,2.7vw,3.5rem)]"
+        className="font-display block w-full max-w-none text-[clamp(1.5rem,3.2vw,3rem)] font-light leading-[1.08] tracking-tight text-white md:text-[clamp(1.75rem,2.7vw,3.5rem)]"
       >
         Teqto Infotech delivers web and app solutions, customized ERP and CRM software, e-commerce systems, and social media platform development for small and mid-sized businesses. Our goal is to be recognized as a reliable company for integrated process management solutions.
       </SplitReveal>

@@ -91,7 +91,7 @@ export default function Portfolio() {
       </section>
 
       {/* Filter + grid */}
-      <section className="shell pb-32">
+      <section className="shell pb-24 md:pb-32">
         {/* Category filter */}
         <div className="mb-12 flex flex-wrap gap-3">
           {categories.map((cat) => {
